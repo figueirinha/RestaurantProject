@@ -1,0 +1,23 @@
+﻿@using Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.MenuInfo
+
+@model MealViewModel
+
+<h2>Meal - Details</h2>
+
+<br />
+<div>
+    <dl class="row">
+        <dt class="col-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-2">
+            Dish Count
+        </dt>
+        <dd>
+            10
+        </dd>
+    </dl>
+</div>

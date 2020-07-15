@@ -1,0 +1,35 @@
+﻿@using Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.MenuInfo
+
+@model IEnumerable<DietaryRestrictionViewModel>
+
+<h2>Dietary Restrictions</h2>
+
+<p>
+    <a asp-action="Create">Create</a>
+</p>
+
+<div class="table-responsive">
+    <table claa="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var dietaryRestriction in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@dietaryRestriction.Id">Edit</a>
+                        <a asp-action="Details" asp-route-id="@dietaryRestriction.Id">Details</a>
+                        <a asp-action="Delete" asp-route-id="@dietaryRestriction.Id">Delete</a>
+                    </td>
+                    <td>@Html.DisplayFor(x => dietaryRestriction.Name)</td>
+                </tr>
+            }
+        </tbody>
+        
+    </table>
+
+</div>
