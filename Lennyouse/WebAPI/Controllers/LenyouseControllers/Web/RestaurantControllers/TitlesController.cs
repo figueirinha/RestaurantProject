@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Recodme.RD.Lennyouse.BusinessLayer.BusinessObjects.MenuInfo;
-using Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.MenuInfo;
+using Recodme.RD.Lennyouse.BusinessLayer.BusinessObjects.RestaurantInfo;
+using Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.RestaurantInfo;
 using WebAPI.Models;
 
-namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Controllers.LenyouseControllers.Web.MenuControllers
+namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Controllers.LenyouseControllers.Web.RestaurantControllers
 {
 
     [ApiExplorerSettings(IgnoreApi = true)]
-    public class CoursesController : Controller
+    public class TitlesController : Controller
     {
-        private readonly CourseBusinessObject _bo = new CourseBusinessObject();
+        private readonly TitleBusinessObject _bo = new TitleBusinessObject();
 
         public async Task<IActionResult> Index()
         {
             var listOperation = await _bo.ListAsync();
             if (!listOperation.Success) return View("Error", new ErrorViewModel() { RequestId = listOperation.Exception.Message });
-            var lst = new List<CourseViewModel>();
+            var lst = new List<TitleViewModel>();
             foreach (var item in listOperation.Result)
             {
                 if (!item.IsDeleted)
                 {
-                    lst.Add(CourseViewModel.Parse(item));
+                    lst.Add(TitleViewModel.Parse(item));
                 }
             }
             return View(lst);
@@ -36,7 +36,7 @@ namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Controllers.LenyouseCont
             var getOperation = await _bo.ReadAsync((Guid)id);
             if (!getOperation.Success) return View("Error", new ErrorViewModel() { RequestId = getOperation.Exception.Message });
             if (getOperation.Result == null) return NotFound();
-            var vm = CourseViewModel.Parse(getOperation.Result);
+            var vm = TitleViewModel.Parse(getOperation.Result);
             return View(vm);
         }
 
@@ -47,12 +47,12 @@ namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Controllers.LenyouseCont
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name")] CourseViewModel vm)
+        public async Task<IActionResult> Create([Bind("Position", "Description", "Name")] TitleViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                var Course = vm.ToCourse();
-                var createOperation = await _bo.CreateAsync(Course);
+                var Title = vm.ToTitle();
+                var createOperation = await _bo.CreateAsync(Title);
                 if (!createOperation.Success) return View("Error", new ErrorViewModel() { RequestId = createOperation.Exception.Message });
                 return RedirectToAction(nameof(Index));
             }
@@ -65,13 +65,13 @@ namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Controllers.LenyouseCont
             var getOperation = await _bo.ReadAsync((Guid)id);
             if (!getOperation.Success) return View("Error", new ErrorViewModel() { RequestId = getOperation.Exception.Message });
             if (getOperation.Result == null) return NotFound();
-            var vm = CourseViewModel.Parse(getOperation.Result);
+            var vm = TitleViewModel.Parse(getOperation.Result);
             return View(vm);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id, Name")] CourseViewModel vm)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id, Position, Description, Name")] TitleViewModel vm)
         {
             if (ModelState.IsValid)
             {
@@ -79,6 +79,8 @@ namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Controllers.LenyouseCont
                 if (!getOperation.Success) return View("Error", new ErrorViewModel() { RequestId = getOperation.Exception.Message });
                 if (getOperation.Result == null) return NotFound();
                 var result = getOperation.Result;
+                result.Position = vm.Position;
+                result.Description = vm.Description;
                 result.Name = vm.Name;
                 var updateOperation = await _bo.UpdateAsync(result);
                 if (!updateOperation.Success) return View("Error", new ErrorViewModel() { RequestId = updateOperation.Exception.Message });

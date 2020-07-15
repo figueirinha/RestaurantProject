@@ -1,0 +1,67 @@
+﻿@using Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.RestaurantInfo
+
+@model RestaurantViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="card ml-5 mr-5">
+    <div class="card-header">
+        <div class="float-right">
+            <a asp-action="Index" asp-controller="Home"><i class="fas fa-home mr-2"></i></a>
+            /
+            <a asp-action="Index" asp-controller="Meal">
+                <i class="fas fa-utensils mr-2"></i>Restaurants
+            </a>
+            /
+            <i class="fas fa-plus mr-2"></i>
+        </div>
+        <h4 class="m-0 p-0">New Meal</h4>
+    </div>
+</div>
+
+<h2>Restaurant - New</h2>
+<br />
+<div class="row">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="=" text-danger></div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address" class="control-label"></label>
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="OpenningHours" class="control-label"></label>
+            <input asp-for="OpenningHours" class="form-control" />
+            <span asp-validation-for="OpenningHours" class="text-danger"></span>
+        </div> 
+        <div class="form-group">
+            <label asp-for="ClosingHours" class="control-label"></label>
+            <input asp-for="ClosingHours" class="form-control" />
+            <span asp-validation-for="ClosingHours" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ClosingDays" class="control-label"></label>
+            <input asp-for="ClosingDays" class="form-control" />
+            <span asp-validation-for="ClosingDays" class="text-danger"></span>
+        <div class="form-group">
+            <label asp-for="TableCount" class="control-label"></label>
+            <input asp-for="TableCount" class="form-control" />
+            <span asp-validation-for="TableCount" class="text-danger"></span>
+        </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

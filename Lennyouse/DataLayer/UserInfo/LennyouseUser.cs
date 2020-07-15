@@ -5,10 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Recodme.RD.Lennyouse.Data.UserInfo
 {
-    public class LennyouseUser : IdentityUser<Guid>
-    {
-        [Key]
-        public override Guid Id  { get; set;} 
+    public class LennyouseUser : IdentityUser
+    {      
         public virtual Person Person { get; set; }
 
         [ForeignKey("Person")]
@@ -26,10 +24,10 @@ namespace Recodme.RD.Lennyouse.Data.UserInfo
         //    PersonId = personId;
         //}
 
-        public LennyouseUser(Guid personId)
-        {
-            Id = Guid.NewGuid();
-            PersonId = personId;
-        }
+        //public LennyouseUser(Guid personId)
+        //{
+        //    Id = Guid.NewGuid();
+        //    PersonId = personId;
+        //}
     }
 }

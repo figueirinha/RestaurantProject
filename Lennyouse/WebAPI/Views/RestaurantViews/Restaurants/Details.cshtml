@@ -1,0 +1,33 @@
+﻿@using Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.RestaurantInfo
+
+@model RestaurantViewModel
+
+<h2>Restaurant - Details</h2>
+
+<br />
+<div>
+    <dl class="row">
+        <dt class="col-2">
+            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Address)
+            @Html.DisplayNameFor(model => model.OpenningHours) 
+            @Html.DisplayNameFor(model => model.ClosingHours) 
+            @Html.DisplayNameFor(model => model.ClosingDays) 
+            @Html.DisplayNameFor(model => model.TableCount)
+        </dt>
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Address)
+            @Html.DisplayFor(model => model.OpenningHours)
+            @Html.DisplayFor(model => model.ClosingHours)
+            @Html.DisplayFor(model => model.ClosingDays)
+            @Html.DisplayFor(model => model.TableCount)
+        </dd>
+        <dt class="col-2">
+            Dish Count
+        </dt>
+        <dd>
+            10
+        </dd>
+    </dl>
+</div>

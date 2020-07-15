@@ -1,0 +1,43 @@
+﻿@using Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.UserInfo
+
+@model IEnumerable<PersonViewModel>
+
+<h2>Persons</h2>
+
+<p>
+    <a asp-action="Create">Create</a>
+</p>
+
+<div class="table-responsive">
+    <table claa="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>@Html.DisplayNameFor(model => model.VatNumber)</th>
+                <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                <th>@Html.DisplayNameFor(model => model.BirthDate)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var meal in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@meal.Id">Edit</a>
+                        <a asp-action="Details" asp-route-id="@meal.Id">Details</a>
+                        <a asp-action="Delete" asp-route-id="@meal.Id">Delete</a>
+                    </td>
+                    <td>@Html.DisplayFor(x => meal.VatNumber)</td>
+                    <td>@Html.DisplayFor(x => meal.PhoneNumber)</td>
+                    <td>@Html.DisplayFor(x => meal.FirstName)</td>
+                    <td>@Html.DisplayFor(x => meal.LastName)</td>
+                    <td>@Html.DisplayFor(x => meal.BirthDate)</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>

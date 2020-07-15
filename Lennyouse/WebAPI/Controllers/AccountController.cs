@@ -27,13 +27,13 @@ namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Controllers
         [HttpGet]
         public ActionResult<string> Login()
         {
-            var mockUser = new LennyouseUser(Guid.NewGuid());
+            var mockUser = new IdentityUser();
             mockUser.Email = "m.figueirinha@recodme.pt";
             mockUser.PasswordHash = "asdfghjklç";
             return GenerateJsonWebToken(mockUser);
         }
 
-        private string GenerateJsonWebToken(LennyouseUser user)
+        private string GenerateJsonWebToken(IdentityUser user)
         {
             var jwtKey = _config["Jwt:Key"];
             var keyBytes = Encoding.UTF8.GetBytes(jwtKey);
