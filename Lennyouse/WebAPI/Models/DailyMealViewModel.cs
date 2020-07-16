@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.MenuInfo;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.MenuInfo
+namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models
 {
     public class MenuOfTheDayViewModel
     {

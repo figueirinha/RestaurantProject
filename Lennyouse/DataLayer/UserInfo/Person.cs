@@ -12,6 +12,8 @@ namespace Recodme.RD.Lennyouse.Data.UserInfo
         public virtual ICollection<ClientRecord> ClientRecords { get; set; }
 
 
+        public LennyouseUser LennyouseUser { get; set; }
+
         private long _vatNumber;
         [Display(Name = "VAT Number")]
         [Required]
@@ -83,7 +85,7 @@ namespace Recodme.RD.Lennyouse.Data.UserInfo
             _phoneNumber = phoneNumber;
             _firstName = firstName;
             _lastName = lastName;
-            _birthDate = birthDate;
+            _birthDate = birthDate;         
         }
 
         public Person(Guid id, DateTime createdAt, DateTime updatedAt, bool isDeleted, long vatNumber, long phoneNumber, 
@@ -93,7 +95,7 @@ namespace Recodme.RD.Lennyouse.Data.UserInfo
             _phoneNumber = phoneNumber;
             _firstName = firstName;
             _lastName = lastName;
-            _birthDate = birthDate;
+            _birthDate = birthDate;          
         }
     }
 }

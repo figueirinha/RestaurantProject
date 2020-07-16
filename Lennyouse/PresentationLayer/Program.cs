@@ -6,6 +6,7 @@ using Recodme.RD.Lennyouse.DataAccessLayer.DataAccessObjects;
 using Recodme.RD.Lennyouse.DataAccessLayer.DataAccessObjects.MenuInfo;
 using Recodme.RD.Lennyouse.DataAccessLayer.DataAccessObjects.RestaurantInfo;
 using Recodme.RD.Lennyouse.DataAccessLayer.DataAccessObjects.UserInfo;
+using Recodme.RD.Lennyouse.DataAccessLayer.Seeders;
 using System;
 
 namespace Recodme.RD.Lennyouse.PresentationLayer
@@ -14,9 +15,10 @@ namespace Recodme.RD.Lennyouse.PresentationLayer
     {
         static void Main(string[] args)
         {
-            var ctx = new RestaurantContext();
-            ctx.Database.EnsureCreated();
+            //var ctx = new RestaurantContext();
+            //ctx.Database.EnsureCreated();
 
+            ContextSeeders.Seed();
             //var daodr = new dietaryrestrictiondataaccessobject();
             //var veganrestriction = new dietaryrestriction("vegan");
             //var daodr.create(veganrestriction);

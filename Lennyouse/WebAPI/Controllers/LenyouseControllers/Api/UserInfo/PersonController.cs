@@ -15,13 +15,12 @@ namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Controllers.LennyouseCon
     public class PersonController : ControllerBase
     {
         private PersonBusinessObject _bo = new PersonBusinessObject();
-        
 
 
         [HttpPost]
         public ActionResult Create([FromBody] PersonViewModel vm)
         {
-            var p = new Person(vm.VatNumber, vm.PhoneNumber, vm.FirstName, vm.LastName, vm.BirthDate);            
+            var p = new Person(vm.VatNumber, vm.PhoneNumber, vm.FirstName, vm.LastName, vm.BirthDate);
             var res = _bo.Create(p);
             var code = res.Success ? HttpStatusCode.OK : HttpStatusCode.InternalServerError;
             return new ObjectResult(code);
@@ -70,7 +69,6 @@ namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Controllers.LennyouseCon
             if (current.FirstName != p.FirstName) current.FirstName = p.FirstName;
             if (current.LastName != p.LastName) current.LastName = p.LastName;
             if (current.BirthDate != p.BirthDate) current.BirthDate = p.BirthDate;
-      
 
             var updateResult = _bo.Update(current);
             if (!updateResult.Success) return new ObjectResult(HttpStatusCode.InternalServerError);

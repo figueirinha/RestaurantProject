@@ -6,7 +6,6 @@ namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.UserInfo
     public class PersonViewModel
     {
         public Guid Id { get; set; }
-        public Guid LennyouseUserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public long VatNumber { get; set; }
@@ -27,7 +26,7 @@ namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.UserInfo
                 PhoneNumber = person.PhoneNumber,
                 FirstName = person.FirstName,
                 LastName = person.LastName,
-                BirthDate = person.BirthDate,
+                BirthDate = person.BirthDate
             };
         }
     }

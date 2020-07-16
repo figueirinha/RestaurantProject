@@ -1,0 +1,31 @@
+﻿@using Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.UserInfo
+
+@model PersonViewModel
+
+<h2>Person - Details</h2>
+
+<br />
+<div>
+    <dl class="row">
+        <dt class="col-2">
+            @Html.DisplayNameFor(model => model.VatNumber)
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.VatNumber)
+            @Html.DisplayFor(model => model.PhoneNumber)
+            @Html.DisplayFor(model => model.FirstName)
+            @Html.DisplayFor(model => model.LastName)
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        <dt class="col-2">
+            Dish Count
+        </dt>
+        <dd>
+            10
+        </dd>
+    </dl>
+</div>
