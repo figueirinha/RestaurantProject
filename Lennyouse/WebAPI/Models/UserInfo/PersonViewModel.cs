@@ -15,7 +15,7 @@ namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.UserInfo
 
         public Person ToPerson()
         {
-            return new Person(VatNumber, PhoneNumber, FirstName, LastName, BirthDate, LennyouseUserId);
+            return new Person(VatNumber, PhoneNumber, FirstName, LastName, BirthDate);
         }
 
         public static PersonViewModel Parse(Person person)
@@ -28,7 +28,6 @@ namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.UserInfo
                 FirstName = person.FirstName,
                 LastName = person.LastName,
                 BirthDate = person.BirthDate,
-                LennyouseUserId =  person.LennyouseUserId
             };
         }
     }

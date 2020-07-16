@@ -5,18 +5,40 @@ using Recodme.RD.Lennyouse.Data.MenuInfo;
 using Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.MenuInfo;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using WebAPI.Models;
 
 namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Controllers.LennyouseControllers.Api.MenuInfo
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DishController : ControllerBase
+    public class DishController : Controller
     {
-
         private DishBusinessObject _bo = new DishBusinessObject();
+        private DietaryRestrictionBusinessObject _drbo = new DietaryRestrictionBusinessObject();
+
+        public async Task<IActionResult> Index()
+        {
+            var listOperation = await _bo.ListAsync();
+            if (!listOperation.Success) return View("Error", new ErrorViewModel() { RequestId = listOperation.Exception.Message });
+            var drlistOperation = await _drbo.ListAsync();
+            if (!drlistOperation.Success) return View("Error", new ErrorViewModel() { RequestId = listOperation.Exception.Message });
+
+            var dishlist = new List<DishViewModel>();
+            foreach (var item in listOperation.Result)
+            {
+                dishlist.Add(DishViewModel.Parse(item));
+            }
+
+            var drlist = new List<DietaryRestrictionViewModel>();
+            foreach (var item in drlistOperation.Result)
+            {
+                drlist.Add(DietaryRestrictionViewModel.Parse(item));
+            }
+            ViewBag.DietaryRestrictins = drlist;
+            return View(dishlist);
+        }
 
         [HttpPost]
         public ActionResult Create([FromBody] DishViewModel vm)

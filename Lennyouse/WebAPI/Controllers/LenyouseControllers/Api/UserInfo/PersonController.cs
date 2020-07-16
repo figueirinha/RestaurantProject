@@ -15,16 +15,13 @@ namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Controllers.LennyouseCon
     public class PersonController : ControllerBase
     {
         private PersonBusinessObject _bo = new PersonBusinessObject();
-        private LennyouseUserBusinessObject _boLUser = new LennyouseUserBusinessObject();
+        
 
 
         [HttpPost]
         public ActionResult Create([FromBody] PersonViewModel vm)
         {
-            var p = new Person(vm.VatNumber, vm.PhoneNumber, vm.FirstName, vm.LastName, vm.BirthDate, vm.LennyouseUserId);
-            var len = new LennyouseUser(p.Id);
-            var asd = _boLUser.Create(len);
-            p.LennyouseUserId = len.Id;
+            var p = new Person(vm.VatNumber, vm.PhoneNumber, vm.FirstName, vm.LastName, vm.BirthDate);            
             var res = _bo.Create(p);
             var code = res.Success ? HttpStatusCode.OK : HttpStatusCode.InternalServerError;
             return new ObjectResult(code);
@@ -66,14 +63,14 @@ namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Controllers.LennyouseCon
 
             if (current.VatNumber == p.VatNumber && current.PhoneNumber == p.PhoneNumber &&
                 current.FirstName == p.FirstName && current.LastName == p.LastName &&
-                current.BirthDate == p.BirthDate && current.LennyouseUserId == p.LennyouseUserId) return new ObjectResult(HttpStatusCode.NotModified);
+                current.BirthDate == p.BirthDate) return new ObjectResult(HttpStatusCode.NotModified);
 
             if (current.VatNumber != p.VatNumber) current.VatNumber = p.VatNumber;
             if (current.PhoneNumber != p.PhoneNumber) current.PhoneNumber = p.PhoneNumber;
             if (current.FirstName != p.FirstName) current.FirstName = p.FirstName;
             if (current.LastName != p.LastName) current.LastName = p.LastName;
             if (current.BirthDate != p.BirthDate) current.BirthDate = p.BirthDate;
-            if (current.LennyouseUserId != p.LennyouseUserId) current.LennyouseUserId = p.LennyouseUserId;
+      
 
             var updateResult = _bo.Update(current);
             if (!updateResult.Success) return new ObjectResult(HttpStatusCode.InternalServerError);

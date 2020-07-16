@@ -11,10 +11,6 @@ namespace Recodme.RD.Lennyouse.Data.UserInfo
         public virtual ICollection<StaffRecord> StaffRecords { get; set; }
         public virtual ICollection<ClientRecord> ClientRecords { get; set; }
 
-        [ForeignKey("LennyouseUser")]
-        public Guid LennyouseUserId { get; set; }
-
-        public LennyouseUser LennyouseUser { get; set; }
 
         private long _vatNumber;
         [Display(Name = "VAT Number")]
@@ -81,25 +77,23 @@ namespace Recodme.RD.Lennyouse.Data.UserInfo
             }
         }
 
-        public Person(long vatNumber, long phoneNumber, string firstName, string lastName, DateTime birthDate, Guid lennyouseUserId) : base()
+        public Person(long vatNumber, long phoneNumber, string firstName, string lastName, DateTime birthDate) : base()
         {
             _vatNumber = vatNumber;
             _phoneNumber = phoneNumber;
             _firstName = firstName;
             _lastName = lastName;
             _birthDate = birthDate;
-            LennyouseUserId = lennyouseUserId;
         }
 
         public Person(Guid id, DateTime createdAt, DateTime updatedAt, bool isDeleted, long vatNumber, long phoneNumber, 
-            string firstName, string lastName, DateTime birthDate, Guid lennyouseUserId) : base(id, createdAt, updatedAt, isDeleted)
+            string firstName, string lastName, DateTime birthDate) : base(id, createdAt, updatedAt, isDeleted)
         {
             _vatNumber = vatNumber;
             _phoneNumber = phoneNumber;
             _firstName = firstName;
             _lastName = lastName;
             _birthDate = birthDate;
-            LennyouseUserId = lennyouseUserId;
         }
     }
 }

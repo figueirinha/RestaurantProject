@@ -26,10 +26,10 @@ namespace Recodme.RD.Lennyouse.Data.UserInfo
         //    PersonId = personId;
         //}
 
-        public LennyouseUser(Guid personId)
-        {
-            Id = Guid.NewGuid();
-            PersonId = personId;
-        }
+        //public LennyouseUser(Guid personId)
+        //{
+        //    Id = Guid.NewGuid();
+        //    PersonId = personId;
+        //}
     }
 }

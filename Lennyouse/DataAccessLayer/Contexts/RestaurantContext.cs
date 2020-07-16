@@ -27,11 +27,6 @@ namespace Recodme.RD.Lennyouse.DataAccessLayer.Contexts
             }
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            builder.Entity<Person>().HasOne(x => x.LennyouseUser).WithOne(x => x.Person);
-            base.OnModelCreating(builder);
-        }
 
         public DbSet<Course> Course { get; set; }
         public DbSet<DietaryRestriction> DietaryRestriction { get; set; }
