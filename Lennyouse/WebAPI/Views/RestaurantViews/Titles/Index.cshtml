@@ -20,17 +20,17 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var meal in Model)
+            @foreach (var title in Model)
             {
                 <tr>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@meal.Id">Edit</a>
-                        <a asp-action="Details" asp-route-id="@meal.Id">Details</a>
-                        <a asp-action="Delete" asp-route-id="@meal.Id">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@title.Id">Edit</a>
+                        <a asp-action="Details" asp-route-id="@title.Id">Details</a>
+                        <a asp-action="Delete" asp-route-id="@title.Id">Delete</a>
                     </td>
-                    <td>@Html.DisplayFor(x => meal.Name)</td>
-                    <td>@Html.DisplayFor(x => meal.Position)</td>
-                    <td>@Html.DisplayFor(x => meal.Description)</td>
+                    <td>@Html.DisplayFor(x => title.Name)</td>
+                    <td>@Html.DisplayFor(x => title.Position)</td>
+                    <td>@Html.DisplayFor(x => title.Description)</td>
                
                 </tr>
             }

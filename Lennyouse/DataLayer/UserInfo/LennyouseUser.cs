@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Recodme.RD.Lennyouse.Data.UserInfo
 {
-    public class LennyouseUser : IdentityUser
+    public class LennyouseUser : IdentityUser<int>
     {      
         public virtual Person Person { get; set; }
 

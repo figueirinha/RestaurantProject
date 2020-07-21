@@ -1,11 +1,15 @@
 ﻿using Recodme.RD.Lennyouse.Data.MenuInfo;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.MenuInfo
 {
     public class MealViewModel
     {
+        [Display(Name = "Starting Hours")]
         public Guid Id { get; set; }
+
+        [Display(Name = "Startin Hours")]
         public string Name { get; set; }
         public string StartingHours { get; set; }
         public string EndingHours { get; set; }

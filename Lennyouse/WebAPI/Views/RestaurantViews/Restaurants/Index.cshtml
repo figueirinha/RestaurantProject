@@ -22,20 +22,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var meal in Model)
+            @foreach (var restaurant in Model)
             {
             <tr>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@meal.Id">Edit</a>
-                    <a asp-action="Details" asp-route-id="@meal.Id">Details</a>
-                    <a asp-action="Delete" asp-route-id="@meal.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@restaurant.Id">Edit</a>
+                    <a asp-action="Details" asp-route-id="@restaurant.Id">Details</a>
+                    <a asp-action="Delete" asp-route-id="@restaurant.Id">Delete</a>
                 </td>
-                <td>@Html.DisplayFor(x => meal.Name)</td>
-                <td>@Html.DisplayFor(x => meal.Address)</td>
-                <td>@Html.DisplayFor(x => meal.OpenningHours)</td>
-                <td>@Html.DisplayFor(x => meal.ClosingHours)</td>
-                <td>@Html.DisplayFor(x => meal.ClosingDays)</td>
-                <td>@Html.DisplayFor(x => meal.TableCount)</td>
+                <td>@Html.DisplayFor(x => restaurant.Name)</td>
+                <td>@Html.DisplayFor(x => restaurant.Address)</td>
+                <td>@Html.DisplayFor(x => restaurant.OpenningHours)</td>
+                <td>@Html.DisplayFor(x => restaurant.ClosingHours)</td>
+                <td>@Html.DisplayFor(x => restaurant.ClosingDays)</td>
+                <td>@Html.DisplayFor(x => restaurant.TableCount)</td>
             </tr>
             }
         </tbody>
