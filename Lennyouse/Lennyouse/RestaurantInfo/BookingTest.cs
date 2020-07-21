@@ -34,7 +34,7 @@ namespace Recodme.RD.Lennyouse.LennyouseTest.RestaurantInfo
             var booking = new Booking(cr.Id, DateTime.UtcNow);
 
 
-            bbo.Create(booking);
+            
             crbo.Create(cr);
             pbo.Create(newP);
             rbo.Create(newR);
@@ -66,7 +66,7 @@ namespace Recodme.RD.Lennyouse.LennyouseTest.RestaurantInfo
             var booking = new Booking(cr.Id, DateTime.UtcNow);
 
 
-            bbo.Create(booking);
+            
             crbo.Create(cr);
             pbo.Create(newP);
             rbo.Create(newR);
@@ -121,7 +121,7 @@ namespace Recodme.RD.Lennyouse.LennyouseTest.RestaurantInfo
             var cr = new ClientRecord(DateTime.UtcNow, newP.Id, newR.Id);
             var booking = new Booking(cr.Id, DateTime.UtcNow);
 
-            bbo.Create(booking);
+            
             crbo.Create(cr);
             pbo.Create(newP);
             rbo.Create(newR);
@@ -161,7 +161,7 @@ namespace Recodme.RD.Lennyouse.LennyouseTest.RestaurantInfo
             var cr = new ClientRecord(DateTime.UtcNow, newP.Id, newR.Id);
             var booking = new Booking(cr.Id, DateTime.UtcNow);
 
-            bbo.Create(booking);
+            
             crbo.Create(cr);
             pbo.Create(newP);
             rbo.Create(newR);
