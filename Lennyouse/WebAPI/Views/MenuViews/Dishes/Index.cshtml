@@ -1,8 +1,8 @@
 ﻿@using Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.MenuInfo
 
-@model IEnumerable<CourseViewModel>
+@model IEnumerable<DishViewModel>
 
-<h2>Courses</h2>
+<h2>Dishes</h2>
 
 <p>
     <a asp-action="Create">Create</a>
@@ -17,15 +17,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var course in Model)
+            @foreach (var dish in Model)
             {
                 <tr>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@course.Id">Edit</a>
-                        <a asp-action="Details" asp-route-id="@course.Id">Details</a>
-                        <a asp-action="Delete" asp-route-id="@course.Id">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@dish.Id">Edit</a>
+                        <a asp-action="Details" asp-route-id="@dish.Id">Details</a>
+                        <a asp-action="Delete" asp-route-id="@dish.Id">Delete</a>
                     </td>
-                    <td>@Html.DisplayFor(x => course.Name)</td>
+                    <td>@Html.DisplayFor(x => dish.Name)</td>
                 </tr>
             }
         </tbody>

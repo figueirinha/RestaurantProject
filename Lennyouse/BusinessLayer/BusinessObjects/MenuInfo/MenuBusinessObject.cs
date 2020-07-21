@@ -5,6 +5,7 @@ using Recodme.RD.Lennyouse.DataAccessLayer.DataAccessObjects;
 using Recodme.RD.Lennyouse.DataAccessLayer.DataAccessObjects.MenuInfo;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
 
@@ -16,6 +17,16 @@ namespace Recodme.RD.Lennyouse.BusinessLayer.BusinessObjects.MenuInfo
         public MenuBusinessObject()
         {
             _dao = new MenuDataAccessObject();
+        }
+
+        public async Task<OperationResult<List<Menu>>> TodaysMenu()
+        {
+            var listOperation = await ListAsync();
+            if (!listOperation.Success) return listOperation;
+
+            var result = listOperation.Result;
+            var list = result.Where(x => x.Date.Year == DateTime.Now.Year && x.Date.DayOfYear == DateTime.Now.DayOfYear && !x.IsDeleted).ToList();
+            return new OperationResult<List<Menu>>() { Success = true, Result = list };
         }
 
         #region List

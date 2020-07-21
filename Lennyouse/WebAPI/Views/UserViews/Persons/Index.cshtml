@@ -21,19 +21,19 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var meal in Model)
+            @foreach (var person in Model)
             {
                 <tr>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@meal.Id">Edit</a>
-                        <a asp-action="Details" asp-route-id="@meal.Id">Details</a>
-                        <a asp-action="Delete" asp-route-id="@meal.Id">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@person.Id">Edit</a>
+                        <a asp-action="Details" asp-route-id="@person.Id">Details</a>
+                        <a asp-action="Delete" asp-route-id="@person.Id">Delete</a>
                     </td>
-                    <td>@Html.DisplayFor(x => meal.VatNumber)</td>
-                    <td>@Html.DisplayFor(x => meal.PhoneNumber)</td>
-                    <td>@Html.DisplayFor(x => meal.FirstName)</td>
-                    <td>@Html.DisplayFor(x => meal.LastName)</td>
-                    <td>@Html.DisplayFor(x => meal.BirthDate)</td>
+                    <td>@Html.DisplayFor(x => person.VatNumber)</td>
+                    <td>@Html.DisplayFor(x => person.PhoneNumber)</td>
+                    <td>@Html.DisplayFor(x => person.FirstName)</td>
+                    <td>@Html.DisplayFor(x => person.LastName)</td>
+                    <td>@Html.DisplayFor(x => person.BirthDate)</td>
                 </tr>
             }
         </tbody>

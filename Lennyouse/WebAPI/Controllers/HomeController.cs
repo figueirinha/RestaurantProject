@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Recodme.RD.Lennyouse.BusinessLayer.BusinessObjects.MenuInfo;
+using Recodme.RD.Lennyouse.Data.MenuInfo;
 using Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models;
+using Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.MenuInfo;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
@@ -54,7 +56,49 @@ namespace WebAPI.Controllers
             if (!courseListOperation.Success) return View("Error");
             if (courseListOperation.Result.Count == 0) return View("Error");
 
-            return View();
+
+            foreach(var serving in servingListOperation.Result)
+            {
+                var course = courseListOperation.Result.First(x => x.Id == serving.CourseId);
+                var dish = dishListOperation.Result.First(x => x.Id == serving.DishId);
+                var menu = menuListOperation.Result.First(x => x.Id == serving.MenuId);
+                var dr = dietaryRestrictionListOperation.Result.First(x => x.Id == dish.DietaryRestrictionId);
+                var meal = mealListOperation.Result.First(x => x.Id == menu.MealId);
+
+                if (meal.Menus == null) meal.Menus = new List<Menu>();
+                meal.Menus.Add(menu);
+                menu.Meal = meal;
+
+                if (menu.Servings == null) menu.Servings = new List<Serving>();
+                menu.Servings.Add(serving);
+                serving.Menu = menu;
+
+                if (dr.Dishes == null) dr.Dishes = new List<Dish>();
+                dr.Dishes.Add(dish);
+                dish.DietaryRestriction = dr;
+
+                if (dish.Servings == null) dish.Servings = new List<Serving>();
+                dish.Servings.Add(serving);
+                serving.Dish = dish;
+
+                if (course.Servings == null) course.Servings = new List<Serving>();
+                course.Servings.Add(serving);
+                serving.Course = course;
+            }
+
+            List<ItemOnMenuOfTheDayViewModel> items = new List<ItemOnMenuOfTheDayViewModel>();
+
+            foreach(var dr in dietaryRestrictionListOperation.Result)
+            {
+                var drvm = DietaryRestrictionViewModel.Parse(dr);
+                foreach(var dish in dr.Dishes)
+                {
+                    var dishvm = DishViewModel.Parse(dish);
+                    items.Add(new ItemOnMenuOfTheDayViewModel() { DietaryRestriction = drvm, Dish = dishvm });
+                }
+            }
+
+            return View(menuOfTheDay);
         }
 
         public IActionResult Privacy()
