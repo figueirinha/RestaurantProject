@@ -1,19 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Recodme.RD.Lennyouse.BusinessLayer.BusinessObjects.MenuInfo;
 using Recodme.RD.Lennyouse.Data.MenuInfo;
 using Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Models.MenuInfo;
+using WebAPI.Models;
 
 namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Controllers.LennyouseControllers.Api.MenuInfo
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DietaryRestrictionController : ControllerBase
+    [ApiExplorerSettings(IgnoreApi = true)]
+    public class DietaryRestrictionController : Controller
     {
         private DietaryRestrictionBusinessObject _bo = new DietaryRestrictionBusinessObject();
+
+        public async Task<IActionResult> Index()
+        {
+            var listOperation = await _bo.ListAsync();
+            if (!listOperation.Success) return View("Error", new ErrorViewModel() { RequestId = listOperation.Exception.Message });
+
+
+            var list = new List<DietaryRestrictionViewModel>();
+            foreach (var item in listOperation.Result)
+            {
+                if (!item.IsDeleted)
+                {
+                    list.Add(DietaryRestrictionViewModel.Parse(item));
+                }
+            }           
+            return View(list);
+        }
+
 
         [HttpPost]
         public ActionResult Create([FromBody] DietaryRestrictionViewModel vm)
@@ -32,7 +53,7 @@ namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Controllers.LennyouseCon
             if (res.Success)
             {
                 if (res.Result == null) return NotFound();
-                if(res.Result.UpdatedAt != DateTime.UtcNow) return new ObjectResult(HttpStatusCode.InternalServerError);
+                if (res.Result.UpdatedAt != DateTime.UtcNow) return new ObjectResult(HttpStatusCode.InternalServerError);
                 var drvm = DietaryRestrictionViewModel.Parse(res.Result);
                 return drvm;
             }
@@ -45,15 +66,15 @@ namespace Recodme.RD.Lennyouse.PresentationLayer.WebAPI.Controllers.LennyouseCon
             var res = _bo.List();
             if (!res.Success) return new ObjectResult(HttpStatusCode.InternalServerError);
             var list = new List<DietaryRestrictionViewModel>();
-            foreach(var item in res.Result)
+            foreach (var item in res.Result)
             {
-    
-               list.Add(DietaryRestrictionViewModel.Parse(item));   
-            }         
+
+                list.Add(DietaryRestrictionViewModel.Parse(item));
+            }
 
             return (list);
-            
-            
+
+
         }
 
         [HttpPut]
